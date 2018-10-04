@@ -72,7 +72,7 @@ class HuffmanTree(object):
             else:
                 curPoint = curPoint.right
             if curPoint.item is not None:
-                print(curPoint.item, end='')
+                article += curPoint.item
                 curPoint = self.huffmanRoot
         return article
 
@@ -100,4 +100,5 @@ if __name__ == '__main__':
     print(encoded)
     print('-----Decoded message:-----')
     decoded = hf.Decode(encoded)
-    print()
+    print(decoded)
+
