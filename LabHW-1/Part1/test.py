@@ -17,13 +17,13 @@ if __name__ == '__main__':
     arrA2 = readNumbers('../test/A2.txt')
 
     sorttime = [0]*2
-    print('Testing results:\n--------------------\nAlgorithm\tA1.txt\tA2.txt')
+    print('Testing results:\n--------------------\nFile\tn\tQuicksort\tCoungintsort')
     sorttime[0],_ = benchmark(Quicksort, arrA1)
-    sorttime[1],_ = benchmark(Quicksort, arrA2)
-    print('Quicksort\t%.3f\t%.3f' % tuple(sorttime))
-    sorttime[0],_ = benchmark(Countingsort, arrA1)
+    sorttime[1],_ = benchmark(Countingsort, arrA1)
+    print('A1.txt\t%d\t%.3f\t%.3f' % (len(arrA1), sorttime[0], sorttime[1]))
+    sorttime[0],_ = benchmark(Quicksort, arrA2)
     sorttime[1],_ = benchmark(Countingsort, arrA2)
-    print('Countingsort\t%.3f\t%.3f' % tuple(sorttime))
+    print('A2.txt\t%d\t%.3f\t%.3f' % (len(arrA2), sorttime[0], sorttime[1]))
     # sorttime[0],_ = benchmark(lambda arr: Quicksort(arr, True), arrA1)
     # sorttime[1],_ = benchmark(lambda arr: Quicksort(arr, True), arrA2)
     # print('Rand Quicksort\t%.3f\t%.3f' % tuple(sorttime))
