@@ -2,8 +2,8 @@
 
 import numpy as np
 import random
-from Test import *
-from LaplacianMatrix import *
+from ReadGraph import *
+from SpectralClustering import *
 
 def randomSample(size, nv): 
 	sample = random.sample(range(size), nv)
@@ -18,4 +18,8 @@ if __name__ == '__main__':
 	for i in range(number_samples): 
 		conductance.append(cutConductance(randomSample(size, number_vertices), adj_matrix))
 	ave_cond = sum(conductance)/len(conductance)
-	print(ave_cond)
+	print('The average conductance of %d ransom sample is %.6f' %(number_samples, ave_cond))
+	L = buildLaplacian(adj_matrix)
+	lambda_s, V = smallEigenV(L)
+	print(buildCut(V, adj_matrix, 100, 400))
+	

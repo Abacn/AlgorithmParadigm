@@ -1,9 +1,7 @@
-#!/usr/bin/env python3
-
 import numpy as np
 import csv
 from time import time
-from LaplacianMatrix import *
+from SpectralClustering import *
 
 def readData(adj_fname='adj.csv', dep_fname='dep.csv'):
     """Read csv format data into an array"""
@@ -19,8 +17,8 @@ def readData(adj_fname='adj.csv', dep_fname='dep.csv'):
 if __name__ == '__main__': 
 	time_start = time()
 	adj_matrix, dep_label = readData()
-	L, D = buildLaplacian(adj_matrix)
+	L = buildLaplacian(adj_matrix)
 	lambda_s, V = smallEigenV(L)
-	print(buildCut(V, D,adj_matrix))
+	print(buildCut(V, adj_matrix))
 	time_end = time()
 	print(time_end - time_start)
