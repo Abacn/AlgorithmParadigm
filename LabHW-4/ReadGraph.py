@@ -1,5 +1,8 @@
+#!/usr/bin/env python3
+
 import numpy as np
 import csv
+from time import time
 from LaplacianMatrix import *
 
 def readData(adj_fname='adj.csv', dep_fname='dep.csv'):
@@ -14,5 +17,10 @@ def readData(adj_fname='adj.csv', dep_fname='dep.csv'):
     return adj_matrix, dep_label
 
 if __name__ == '__main__': 
+	time_start = time()
 	adj_matrix, dep_label = readData()
-	buildLaplacian(adj_matrix)
+	L, D = buildLaplacian(adj_matrix)
+	lambda_s, V = smallEigenV(L)
+	print(buildCut(V, D,adj_matrix))
+	time_end = time()
+	print(time_end - time_start)
