@@ -9,7 +9,7 @@ def buildLaplacian(adj_matrix):
 			L[i][j] -= adj_matrix[i][j]
 	return L
 	
-"""Find the k-th smallest non-zero eigenvalue of L"""
+"""Find the first k smallest non-zero eigenvalue of L"""
 def smallEigenV(M, k): 
 	w, v = np.linalg.eig(M)
 	w = w.real
@@ -21,14 +21,15 @@ def smallEigenV(M, k):
 	
 def cutConductance(S, adj_matrix): 
 	D = [sum(row) for row in adj_matrix]
-	nS = sum(D[i] for i in S)
-	naS = sum(D) - nS
+	vol_S = sum([D[i] for i in S])
+	vol_aS = sum(D) - vol_S
 	delta = 0
 	for s in S: 
 		for i in range(len(D)): 
 			if adj_matrix[s][i] and i not in S: 
 				delta += 1
-	phi = delta/min(nS, naS)
+	print(len(S), delta, min(vol_S, vol_aS))
+	phi = delta/min(vol_S, vol_aS)
 	return phi
 	
 def buildCut(V, adj_matrix, begin, end): 

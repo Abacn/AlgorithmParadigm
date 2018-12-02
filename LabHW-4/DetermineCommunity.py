@@ -28,12 +28,15 @@ def closestVertices(L, g, m, adj_matrix):
 	# sorted_distance_g = np.sort(distance_g)
 	# print(min(distance_g))
 	clostest_m = sorted(range(len(distance_g)), key=lambda k: distance_g[k])[:m]
+#	for i in clostest_m: 
+#		print(distance_g[i])
 	#clostest_m = [int(np.argwhere(distance_g==distance)) for distance in sorted_distance_g[:m]]
 	S = []
 	conductance = []
 	print(clostest_m)
 	for ver in clostest_m: 
 		S.append(ver)
+		print(adj_matrix[g][ver])
 		conductance.append(cutConductance(S, adj_matrix))
 	min_conductance = min(conductance[9:])
 	min_index = conductance.index(min_conductance)
@@ -45,12 +48,14 @@ if __name__ == '__main__':
 	adj_matrix, dep_label = readData()
 	size = np.shape(adj_matrix)[0]
 	L = buildLaplacian(adj_matrix)
+	print("the degree of the researcher 0 is %d" %sum(adj_matrix[0]))
 	"""Find the community that the 0 researcher belongs to"""
 	community_0 = closestVertices(L, 0, 110, adj_matrix)
 	actual_community_0 = [researcher for researcher in community_0 if dep_label[researcher] == dep_label[0]]
 	fraction_0 = len(actual_community_0) / len(community_0)
 	print("The fraction of the researcher 0 is %.6f" %fraction_0)
 	
+	print("the degree of the researcher 7 is %d" %sum(adj_matrix[7]))
 	"""Find the community that the researcher 7 belongs to"""
 	community_7 = closestVertices(L, 7, 110, adj_matrix)
 	actual_community_7 = [researcher for researcher in community_7 if dep_label[researcher] == dep_label[7]]
