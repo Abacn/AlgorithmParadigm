@@ -24,7 +24,6 @@ def closestVertices(L, g, m, adj_matrix):
     ver_rep = vertexRepresentation(L)
     distance_g = [vectorDistance(ver_rep[g], ver) for ver in ver_rep]
 
-<<<<<<< HEAD
 	"""Index of the clostest m vertices to g (include the index of g)"""
 	# sorted_distance_g = np.sort(distance_g)
 	# print(min(distance_g))

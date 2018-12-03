@@ -20,5 +20,5 @@ if __name__ == '__main__':
     ave_cond = sum(conductance)/len(conductance)
     print('The average conductance of %d ransom sample is %.6f' %(number_samples, ave_cond))
     L = buildLaplacian(adj_matrix)
-    lambda_s, V = smallEigenV(L)
+    lambda_s, V = smallEigenV(L, 0)
     print(buildCut(V, adj_matrix, 100, 400))
